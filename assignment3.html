@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My page title</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .light-mode {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .dark-mode {
+      background-color: #333;
+      color: #f5f5f5;
+    }
+  </style>
+</head>
+<body onload="updateHeading()">
+  <header>
+    <h1 id="heading">Header</h1>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <form onsubmit="return updateHeading()">
+      <input type="text" name="user_name" placeholder="Enter your name!">
+      <button type="submit">Apply!</button>
+    </form>
+  </nav>
+  <main>
+    <article>
+      <h2>Introduction</h2>
+      <p>The emergence of virtual reality (VR) and augmented reality (AR) has created new opportunities for revolutionizing traditional education and training methods. These immersive technologies have the capability to generate simulated environments enabling interactive and experiential learning. This report examines the present state of VR and AR technologies, their uses and how they can address actual hurdles in education and training. 
+</p>
+      <h3>Literature Review and Applications Review</h3>
+      <p>A comprehensive review of peer reviewed studies reveals an expanding body of research that supports the implementation of VR and AR in education and training. Various investigations emphasize the advantages of these technologies in enhancing engagement, knowledge retention, and skill acquisition. VR and AR provide learners with realistic experiences that encourage them to partake actively in trial and error learning scenarios. In addition research shows that VR and AR can increase spatial understanding, critical thinking skills, as well as problem solving abilities.</p>
+      <p>The examination of current uses of VR and AR in education verifies their potential for supporting learning needs while addressing issues faced by traditional teaching methods. Virtual simulations provide hands on training experiences across various fields such as medical education, engineering, aviation etc.. On the other hand AR enhances classroom instruction by overlaying digital information onto objects found in our environment. Popular applications such as virtual laboratories or interactive anatomy models provide learners with engaging realistic settings to learn a new language. </p>
+      <h3>Solving Real world Problems</h3>
+      <p> VR and AR hold immense potentials when it comes to tackling real world challenges encountered in education/training settings. These technologies can merge theory with practice by supplying immersive interactive experiences. A key advantage is demonstrated when considering remote learning environments where students access high quality educational resources while collaborating with one another on different projects . Beyond this application area there are instances where hazardous occupations demand safe training environments which are now enabled through use with VR/AR . </p>
+      <h3>Conclusion</h3>
+      <p>
+Therefore it can be concluded that utilization of such groundbreaking technologies will change the face of learning environments forever - enhancing engagement levels through interactive feedback techniques while honing cognitive abilities amongst students through immersive methods that improve information retention.</p>
+    </article>
+    <aside>
+      <h2>Related</h2>
+      <ul>
+        <li><a href="#">traing</a></li>
+        <li><a href="#">Education</a></li>
+      </ul>
+    </aside>
+  </main>
+  <footer>
+    <p>© 2023 by Tik Ho Kwan. All rights reversed.</p>
+  </footer>
+
+  <script>
+    // Function to toggle between light and dark mode
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('light-mode');
+      body.classList.toggle('dark-mode');
+      const mode = body.classList.contains('light-mode') ? 'light-mode' : 'dark-mode';
+      localStorage.setItem('theme', mode);
+    }
+
+    // Function to update the heading with the user's name
+    function updateHeading() {
+      const params = new URLSearchParams(window.location.search);
+      const userName = params.get('user_name') || localStorage.getItem('name');
+      const headingElement = document.getElementById('heading');
+      headingElement.textContent = `Hello, ${userName || 'Guest'}!`;
+      localStorage.setItem('name', userName);
+      return false; // Prevent form submission and page navigation
+    }
+
+    // Check if a theme preference exists in local storage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.body.classList.add(savedTheme);
+    }
+  </script>
+</body>
+</html>
